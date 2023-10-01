@@ -1,0 +1,149 @@
+LINKED LIST => 
+
+
+explaination for add method :
+
+In a linked list, each node has a reference (pointer) to the next node in the list. When we traverse a linked list, we start at the first node (called the head) and follow the references to the next nodes until we reach the end of the list.
+
+The while loop while current.next is not None checks whether the current node has a reference to the next node. If it does, it means we have not reached the end of the list yet, so we move the current variable to the next node by setting current = current.next. This effectively moves us one step forward in the list.
+
+The loop continues until we reach a node where current.next is None, which means there is no next node and we have reached the end of the list. At this point, we exit the loop and the current variable contains a reference to the last node in the list. We can then add a new node after this last node by setting current.next = new_node, where new_node is a reference to the new node we want to add.
+
+further :
+
+In a linked list, we represent each node with an object that has two attributes: the value of the node (value) and a reference to the next node in the list (next). We use the Node class to represent these objects.
+
+The LinkedList class, on the other hand, represents the linked list as a whole. It has a single attribute, head, which is a reference to the first node in the list. This attribute is initially set to None when we create a new linked list.
+
+We need two constructors because we need to create two types of objects: Node objects and LinkedList objects. The __init__ method of the Node class takes a single argument value and initializes two attributes: self.value (set to value) and self.next (set to None).
+
+The __init__ method of the LinkedList class, on the other hand, does not take any arguments. It simply initializes a single attribute self.head to None. This attribute will be updated when we add nodes to the list.
+
+So, the Node class is used to create nodes that represent the individual elements of the linked list, while the LinkedList class is used to manage the linked list as a whole.
+
+
+
+
+Regenerate response
+
+____________________________________________________________________________________________________________________
+
+
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None  # reference to the next node in the list
+
+class LinkedList:
+    def __init__(self):
+        self.head = None  # reference to the first node in the list
+
+    def add(self, value):
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next is not None:
+                current = current.next
+            current.next = new_node
+
+    def remove(self, value):
+        if self.head is None:
+            return
+
+        if self.head.value == value:
+            self.head = self.head.next
+            return
+
+        current = self.head
+        while current.next is not None and current.next.value != value:
+            current = current.next
+
+
+
+    def search(self, value):
+        current = self.head
+        while current is not None:
+            if current.value == value:
+                return True
+            current = current.next
+        return False
+
+
+linked_list = LinkedList()
+linked_list.add(1)
+linked_list.add(2)
+linked_list.add(3)
+print(linked_list.search(2))  # output: True
+linked_list.remove(2)
+print(linked_list.search(2))  # output: False
+
+
+
+
+________________________________________________________________________________________________________________________________________________________
+
+My practice Creation of linked list and printing and searching values
+
+class Node:
+    def __init__(self,value):
+        self.value = value
+        self.next = None
+
+class linkedlist:
+    def __init__(self):
+        self.head = None 
+
+    def add(self,value):
+        new_node = Node(value);
+        if (self.head == None):
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next is not None:
+                current = current.next
+            current.next = new_node
+
+    def print_list(self):
+        current = self.head
+        while current is not None:
+            print(current.value) 
+            current = current.next
+
+    def search(self,value):
+        current = self.head
+        while current is not None:
+            if current.value == value:
+                return "found"
+            current = current.next    
+        return "not Found"
+
+linked_list = linkedlist();
+linked_list.add(1);
+linked_list.add(2);
+linked_list.add(3);
+linked_list.print_list()
+a = linked_list.search(2)
+print(a)
+
+
+_____________________________________________________________________________
+
+
+Given a linked list, determine if it has a cycle. If it does, find the starting node of the cycle.
+Merge k sorted linked lists and return it as one sorted list.
+Reverse a linked list. For example, given a linked list 1 -> 2 -> 3 -> 4, return the linked list 4 -> 3 -> 2 -> 1.
+Remove all elements from a linked list of integers that have a specific value. For example, given the linked list 1 -> 2 -> 6 -> 3 -> 4 -> 5 -> 6 and the value 6, return the linked list 1 -> 2 -> 3 -> 4 -> 5.
+Given two linked lists that represent numbers in reverse order (i.e., the least significant digit is at the head), add the two numbers and return the sum as a linked list in the same format.
+Given a linked list and a value k, partition it such that all nodes less than k come before nodes greater than or equal to k.
+Clone a linked list with a random pointer. Each node in the linked list has a next pointer and a random pointer, which can point to any node in the linked list or null.
+Remove duplicates from a sorted linked list. For example, given the linked list 1 -> 1 -> 2 -> 3 -> 3, return the linked list 1 -> 2 -> 3.
+Find the kth to last element of a singly linked list. For example, given a linked list 1 -> 2 -> 3 -> 4 -> 5 and k = 2, return the element 4.
+Rotate a linked list to the right by k places. For example, given the linked list 1 -> 2 -> 3 -> 4 -> 5 and k = 2, return the linked list 4 -> 5 -> 1 -> 2 -> 3.
+These are just a few examples of the kinds of linked list questions that Amazon may ask in their interviews. It's important to be familiar with the various operations that can be performed on linked lists and to practice solving these kinds of problems in order to prepare for an Amazon interview.
+
+
+
+
+

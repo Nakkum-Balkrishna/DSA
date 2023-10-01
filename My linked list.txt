@@ -1,0 +1,160 @@
+class Node{
+    constructor(element){
+        this.element = element
+        this.next = null
+    }
+}
+
+class LinkedList{
+    constructor()
+    {
+        this.head = null;
+        this.size = 0;
+    }
+    
+    add(element){
+        
+        var node = new Node(element)
+        
+        if(this.head == null){
+            this.head = node
+        }else{
+            var current = this.head
+            while(current.next){
+                current = current.next
+            }
+            
+            current.next = node
+        }
+       
+    }
+    
+    insert(element,idx){
+        var node = new Node(element)
+        var curr,pre;
+        
+        curr = this.head
+        var itr = 0
+        if(idx == 0){
+            this.head = node
+            this.head.next = curr
+        }else{
+            // idx = 2
+            // idx.2 = current
+            // current.next = 
+            
+            while (curr && itr!=idx){
+                itr++;    
+                pre = curr
+                curr = curr.next
+            }
+            // console.log("Hey buddy", pre.element, curr.element, idx)
+            pre.next = node
+            node.next = curr
+        }
+    }
+    
+    removeFrom(idx){
+        var curr = this.head
+        var itr = 0
+        var pre
+        
+        if(idx==0){
+            this.head = curr.next
+        }else{
+            while(curr && itr!=idx){
+                itr++
+                pre = curr
+                curr = curr.next
+            }
+            pre.next = curr.next
+        }
+    }
+    
+    removeElement(element){
+        var curr = this.head
+        var pre
+        if(element == curr.element){
+            this.head = curr.next
+        }else{
+            while(curr && curr.element != element){
+                pre = curr
+                curr = curr.next
+            }
+            pre.next = curr.next
+        }
+    }
+    
+    reverse(){
+        var curr = this.head 
+        var pre = null
+        var temp = null
+        while(curr!=null){
+            temp = curr.next
+            curr.next = pre
+            pre = curr
+            curr = temp
+        }
+        // try with this.head = pre;
+        return pre;
+    }
+    
+    printList(head = null)
+    {
+        if(head){
+            var current = head
+            console.log()
+        }else{
+            var current = this.head
+        }
+        
+        while(current){
+            console.log(current.element)
+            current = current.next
+        }
+    }
+    
+    getSizeOfList(){
+        var itr = 0
+        var curr = this.head
+        while(curr){
+            itr++
+            curr = curr.next
+        }
+        return itr
+    }
+    
+}
+
+var ll = new LinkedList()
+
+ll.add(1)
+ll.add(2)
+ll.add(3)
+ll.add(4)
+ll.add(5)
+ll.printList();
+
+// ll.insert(3,2)
+// console.log(">>>>>>>>>>>>>>>\n")
+// ll.printList();
+
+
+// ll.removeFrom(2)
+// console.log(">>>>>>>>>>>>>>>\n")
+// ll.printList();
+
+// ll.removeElement(3)
+// console.log(">>>>>>>>>>>>>>>\n")
+// ll.printList();
+
+// ll.getSizeOfList()
+// console.log("\nSize of List",ll.getSizeOfList())
+// ll.printList();
+
+head = ll.reverse()
+ll.printList(head);
+
+
+
+

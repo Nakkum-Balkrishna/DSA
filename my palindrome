@@ -1,0 +1,78 @@
+def printAllSubstrings(s, n):
+    maxl = 0
+    palin = ''
+    for i in range(0,n):
+        temp = ''
+        for j in range(i,n):
+            temp += s[j]
+            print(temp)
+            if is_palindrome(temp):
+                if len(temp) >= maxl :
+                    maxl = len(temp)
+                    palin = temp
+    print("longest palindrome is : ",maxl, " Str is : ",palin)
+    
+
+def is_palindrome(str1):
+    for i in range(0,len(str1)//2):
+        if str1[i] != str1[len(str1)-i-1]:
+            return False
+    return True    
+    
+s = "aba"
+printAllSubstrings(s, len(s))
+
+_____________________________
+
+Using Dynamo
+
+def printAllSubstrings(s, n):
+    maxl = 0
+    palin = ''
+    dicto = {}
+    for i in range(0,n):
+        temp = ''
+        for j in range(i,n):
+            temp += s[j]
+            getSubStr = temp[1:len(temp)-1]
+            if temp[0] == temp[len(temp)-1] and getSubStr in dicto:
+                print("krishna",getSubStr,temp)
+                maxl = len(temp)
+                palin = temp
+            elif is_palindrome(temp):
+                dicto[temp] = True
+                if len(temp) >= maxl :
+                    maxl = len(temp)
+                    palin = temp
+    print("longest palindrome is : ",maxl, " Str is : ",palin)
+    print(dicto)
+    
+
+def is_palindrome(str1):
+    for i in range(0,len(str1)//2):
+        if str1[i] != str1[len(str1)-i-1]:
+            return False
+    return True    
+    
+s = "abacaba"
+printAllSubstrings(s, len(s))
+
+_____________________________________________________________________________________________________________
+
+Longest palindromic substring
+
+s = "argdjkabbcbba"
+i = 0
+n = len(s)
+palin = {}
+for i in range(n):
+    left = i-1
+    right = i+1
+    while left >= 0 and right <= n-1 and s[left] == s[right] :
+        print("left ",s[left],"right",s[right])
+        left -= 1
+        right += 1
+        print(palin)
+        palin[s[left:right+1]] = 1
+
+        
